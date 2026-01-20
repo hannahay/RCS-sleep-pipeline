@@ -1,0 +1,44 @@
+# Statistical test configuration for plots
+
+tests:
+  ttest:
+    enabled: false
+    description: "Welch's t-test"
+  
+  wilcoxon:
+    enabled: true
+    description: "Wilcoxon rank-sum test"
+  
+  unblocked_permutation:
+    enabled: true
+    description: "Unblocked permutation (ignores blocks)"
+    n_permutations: 1000
+    random_seed: 42
+    show_progress: false
+  
+  within_block_permutation:
+    enabled: true
+    description: "Within-block permutation (accounts for blocks)"
+    n_permutations: 1000
+    show_progress: false
+
+min_samples:
+  ttest: 5
+  wilcoxon: 5
+  unblocked_permutation: 5
+  within_block_permutation: 5
+
+significance_threshold: 0.05
+
+display:
+  show_pvalues: true
+  show_test_statistics: false
+  show_effect_sizes: false
+  pvalue_format: "scientific"  # "scientific", "decimal", or "both"
+  pvalue_decimals: 3
+  show_significance_stars: true
+  significance_levels:
+    "***": 0.001
+    "**": 0.01
+    "*": 0.05
+    "ns": 1.0

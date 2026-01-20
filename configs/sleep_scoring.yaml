@@ -1,0 +1,16 @@
+# Sleep scoring evaluation configuration
+
+nrem_adaptive_states:
+  - 'State 0'
+  - 'State 1'
+
+sleep_stage_mapping:
+  nrem_stages: [2, 3]  # N2, N3
+  rem_stages: [5]
+  wake_stages: [0, 6]
+  n1_stages: [1]
+
+column_names:
+  adaptive_state: 'Adaptive_CurrentAdaptiveState_filled'
+  sleep_stages: 'SleepStage'  # Script checks both 'SleepStage' and 'Sleep_Stages'
+

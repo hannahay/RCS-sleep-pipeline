@@ -1,0 +1,56 @@
+# Frequency band power analysis configuration
+# Placeholders ({patient_id}, {base_data_dir}, {results_dir}) are substituted from pipeline_main.yaml
+
+session_reports_dir: '{base_data_dir}/{patient_id}/session_reports'
+default_hemisphere: 'left'
+session_types_file: '{base_data_dir}/{patient_id}/session_reports'
+
+# Hemisphere sync path (for 4-state analysis)
+# If set, analyzes: state0_R_state0_L, state0_R_state1_L, state1_R_state0_L, state1_R_state1_L
+# Set to null for standard 2-state analysis (state0 and state1)
+hemisphere_sync_path: '{base_data_dir}/hemisphere_comparison/state_stages'
+
+# Output file (saves both _linear.csv and _db.csv automatically)
+output_file: '{results_dir}/{patient_id}/freq_bands/frequency_bands_analysis.csv'
+
+# Analysis parameters
+fs: 500.0  # Sampling frequency (Hz)
+epoch_sec: 15.0  # Epoch length (non-overlapping)
+welch_window_sec: 5  # Welch window size
+welch_overlap_percent: 0  # Welch overlap (0-100)
+artifact_window_sec: 6.0  # Seconds around transitions to exclude
+forward_fill_limit_sec: 15  # Max gap to forward-fill (null = unlimited)
+downsample_to: null  # Downsample to this Hz (null = no downsampling)
+
+# Bandpass filter
+bandpass_filter:
+  enabled: true
+  low_freq: 0.1
+  high_freq: 100.0
+  order: 4
+
+# Channel-specific hemisphere mapping (optional)
+# channel_hemisphere_map:
+#   TD_key0: 'right'
+#   TD_key2: 'right'
+#   TD_key3: 'right'
+
+# Channels to analyze
+channels:
+  - TD_key0
+  - TD_key2
+  - TD_key3
+
+# Frequency bands to analyze (in Hz)
+# Format: [min_frequency, max_frequency]
+frequency_bands:
+  low_delta: [0.5, 2]
+  high_delta: [2.0, 4.0]
+  delta: [0.5, 4.0]
+  theta: [4.5, 8.5]
+  alpha: [9, 12.5]
+  #sigma: [11.0, 16.0]
+  beta: [13.0, 30.0]
+  gamma: [30.5, 60.0]
+  tuned_gamma: [62.0, 68.0]
+

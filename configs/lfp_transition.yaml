@@ -1,0 +1,43 @@
+# LFP stage transition analysis configuration
+
+data:
+  folder_path: "{base_data_dir_sleep_profiler}/{patient_id}/session_reports/for_supervised_SC"
+  specific_file: null  # Analyze specific file if set
+  patient_id: "{patient_id}"
+
+analysis:
+  sleep_stage_mapping:
+    0: 'Wake'
+    4: 'N2'
+    3: 'N2'
+    2: 'N3'
+    5: 'REM'
+  
+  min_prev_stage_duration: 600  # seconds
+  min_next_stage_duration: 180  # seconds
+  pre_transition_time: 35  # seconds before transition
+  post_transition_time: 15  # seconds after transition
+  
+  delta_band: [0.5, 4.0]
+  beta_band: [13.0, 30.0]
+  sampling_rate: 500
+  
+  max_nan_ratio: 0.5
+  max_interpolation_duration: 2.0
+  
+  transition_types:
+    - ["NREM", "REM"]
+    - ["NREM", "Wake"]
+    - ["REM", "Wake"]
+    - ["REM", "NREM"]
+
+output:
+  directory: "{results_dir}/{patient_id}/lfp_transitions"
+  dpi: 300
+  figure_size: [12, 10]
+  show_plots: true
+  save_plots: true
+
+logging:
+  level: "INFO"
+  log_file: "lfp_transition_analysis.log"

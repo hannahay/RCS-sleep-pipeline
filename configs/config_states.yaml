@@ -1,0 +1,25 @@
+# State labels configuration (alternative to states_labels.yaml)
+# Note: states_labels.yaml is the primary file used by plotting scripts
+
+patients:
+  RCS16L:
+    hemisphere: 'left'
+    state0: 'NREM-like'
+    state1: 'wake+REM'
+  
+  RCS16R:
+    hemisphere: 'right'
+    state0: 'wake+REM'
+    state1: 'NREM-like'
+
+hemisphere_defaults:
+  left:
+    state0: 'NREM-like'
+    state1: 'wake+REM'
+  right:
+    state0: 'wake+REM'
+    state1: 'NREM-like'
+
+default:
+  state0: 'State 0'
+  state1: 'State 1'

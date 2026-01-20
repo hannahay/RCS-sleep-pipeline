@@ -1,0 +1,15 @@
+# State labels for each patient/hemisphere
+# Used by plotting scripts for titles and legends
+
+patients:
+  RCS16L:
+    state0: 'NREM-like'
+    state1: 'wake+REM'
+  
+  RCS16R:
+    state0: 'wake+REM'
+    state1: 'NREM-like'
+
+default:
+  state0: 'State 0'
+  state1: 'State 1'

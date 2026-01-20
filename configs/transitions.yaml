@@ -1,0 +1,36 @@
+# Transition effects analysis configuration
+
+session_reports_dir: '{base_data_dir}/{patient_id}/session_reports'
+session_types_file: null  # Auto-detect if null
+
+fs: 500.0  # Sampling frequency (Hz)
+min_interval_sec: 300.0  # Min time between transitions (avoids rapid transitions)
+min_state_duration_sec: 120.0  # Min duration of new state after transition
+
+channels:
+  - TD_key0
+  - TD_key2
+  - TD_key3
+
+frequency_bands:
+  delta: [0.5, 4.0]
+  theta: [5.0, 8.5]
+  alpha: [9.0, 12.5]
+  beta: [13.0, 20.0]
+  gamma: [30.5, 60.0]
+
+# Time windows relative to transition
+close_window:
+  start_sec: -16.0
+  end_sec: 19.0
+  epoch_sec: 3.0
+  skip_before_sec: 0
+  skip_after_sec: 6.0
+
+long_term_window:
+  start_sec: -31.0
+  end_sec: 121.0
+  epoch_sec: 15.0
+  skip_before_sec: 0
+  skip_after_sec: 6.0
+

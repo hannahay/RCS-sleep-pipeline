@@ -1,0 +1,83 @@
+# Plot configuration for consistent styling
+
+# State labels (patient-specific labels loaded from states_labels.yaml)
+state_labels:
+  state0: 'State 0'  # Fallback only
+  state1: 'State 1'  # Fallback only
+  states_labels_file: 'configs/states_labels.yaml'
+
+# States to plot
+states_to_plot:
+  mode: 'all'  # 'all', 'basic_only', 'combined_only', or list of states
+  include: null  # Overrides mode if specified
+  exclude: ['Unknown_State0', 'Unknown_State1']  # Always exclude unknown states
+
+frequency_bands_to_plot:
+  - low_delta
+  - high_delta
+  - delta
+  - theta
+  - alpha
+  - beta
+  - gamma
+  - tuned_gamma
+
+ratios:
+  delta_beta_gamma:
+    name: 'Delta / (Beta + Gamma)'
+    numerator: 'delta'
+    denominator: ['beta', 'gamma']
+    operation: 'sum'
+
+channel_names:
+  TD_key0: 'BG'
+  TD_key2: 'Crtx1'
+  TD_key3: 'Crtx2'
+
+colors:
+  # Colors by label (not state number) for consistency across hemispheres
+  label_based:
+    'NREM-like':
+      continuous: '#6d28d9'
+      adaptive: '#a78bfa'
+      bar_edge: '#dc2626'
+    'wake+REM':
+      continuous: '#1e3a8a'
+      adaptive: '#60a5fa'
+      bar_edge: '#000000'
+  
+  # Legacy fallback
+  state0:
+    continuous: '#1e3a8a'
+    adaptive: '#60a5fa'
+  state1:
+    continuous: '#6d28d9'
+    adaptive: '#a78bfa'
+  bar_edge:
+    state0: '#dc2626'
+    state1: '#000000'
+  bar_edgewidth: 1.0
+
+fonts:
+  axis_label: 22
+  axis_tick: 18
+  title: 24
+  legend: 18
+  text: 16
+  suptitle: 24
+
+plot:
+  bar_alpha: 0.7
+  scatter_alpha: 0.6
+  scatter_size: 50
+  scatter_edgewidth: 0.5
+  grid_alpha: 0.3
+  capsize: 5
+  bar_width: 0.6
+  scatter_jitter: 0.05
+
+stats_box:
+  facecolor: 'wheat'
+  alpha: 0.7
+  boxstyle: 'round'
+

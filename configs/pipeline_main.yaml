@@ -1,0 +1,59 @@
+# Main Pipeline Configuration
+
+patient_id: "RCS16L"  # Format: RCS##L or RCS##R
+hemisphere: "left"  # Used to look up state labels in states_labels.yaml
+
+# Base directories
+base_data_dir: "/media/longterm_hdd/hannac/Sleep_aDBS/data/adaptive/stage_3"
+base_data_dir_sleep_profiler: "/media/longterm_hdd/hannac/Sleep_aDBS/data/sleep_profiler"
+# Which base directory to use (controls {base_data_dir} substitution)
+# Options: 'base_data_dir', 'base_data_dir_sleep_profiler', or custom absolute path
+use_base_data_dir: 'base_data_dir'
+
+# Results directory (null = {selected_base_data_dir}/results)
+results_dir: null
+
+# Analyses to run
+analyses:
+  forward_fill: false  # Forward-fills Adaptive_CurrentAdaptiveState (adds _filled column)
+  preprocessing: false  # Merges raw_data.parquet with sleep_data.parquet (no filtering)
+  freq_bands: true
+  coherence: true
+  slow_waves: false
+  transitions: true
+  analyze_transitions: true
+
+# Plots to generate
+plots:
+  plot_freq_bands: true
+  plot_slow_waves: false
+  plot_transitions: true
+  plot_coherence: true
+  plot_psd: true
+
+# Plot input files (null = auto-detect)
+plot_inputs:
+  freq_bands: null
+  slow_waves: null
+  coherence: null
+  psd: null
+
+# Plot output directory (null = results/{patient_id}/plots)
+plot_output_dir: null
+
+# Config overrides (optional - freq_bands.yaml uses placeholders directly)
+config_overrides:
+  freq_bands: {}
+  
+  transitions:
+    session_reports_dir: "{base_data_dir}/{patient_id}/session_reports"
+  
+  lfp_transition:
+    data:
+      folder_path: "{base_data_dir_sleep_profiler}/{patient_id}/session_reports/for_supervised_SC"
+      patient_id: "{patient_id}"
+    output:
+      directory: "{results_dir}/{patient_id}/lfp_transitions"
+
+run_all_analyses: false
+run_all_plots: false
