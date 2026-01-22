@@ -1,6 +1,6 @@
 # RCS-Sleep-Pipeline
 
-Pipeline for analyzing sleep data from Responsive Cortical Stimulation (RCS) devices.
+Pipeline for analyzing sleep data from Medtronic (RCS) devices.
 
 ## Overview
 
